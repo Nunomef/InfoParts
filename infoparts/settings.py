@@ -87,6 +87,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # LocaleMiddleware comes after SessionMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -113,6 +114,7 @@ TEMPLATES = [
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.apps.communication.notifications.context_processors.notifications',
                 'oscar.core.context_processors.metadata',
+                'django.template.context_processors.i18n'
             ],
         },
     },
@@ -173,7 +175,17 @@ HAYSTACK_CONNECTIONS = {
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-pt'
+
+LANGUAGES = [
+    ('pt-pt', 'Português'),
+    ('en', 'English'),
+    ('es', 'Castellano'),
+    ('fr', 'Français'),
+    ('de', 'Deutsch'),
+]
+
+OSCAR_DEFAULT_CURRENCY = 'EUR'
 
 TIME_ZONE = 'UTC'
 
