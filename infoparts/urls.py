@@ -17,6 +17,7 @@ Including another URLconf
 from django.apps import apps
 from django.urls import include, path
 from django.contrib import admin
+from django.conf import settings
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
@@ -27,4 +28,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include(apps.get_app_config('oscar').urls[0])),
+    
+    path('auth_accounts/', include('allauth.urls')),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]

@@ -1,0 +1,62 @@
+{% extends "oscar/customer/login_registration.html" %}
+{% load i18n %}
+{% load static %}
+{% load socialaccount%}
+
+{% block extrastyles%}
+    <style>
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+          }
+          
+          .separator::before,
+          .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #000;
+          }
+          
+          .separator:not(:empty)::before {
+            margin-right: .25em;
+          }
+          
+          .separator:not(:empty)::after {
+            margin-left: .25em;
+          }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-6 login_form">
+            <form id="login_form" action="{{ request.get_full_path }}" method="post" class="card card-body bg-light" >
+                <h2>{% trans 'Log In' %}</h2>
+                {% csrf_token %}
+                {% include "oscar/partials/form_fields.html" with form=login_form %}
+                <p><a href="{% url 'password-reset' %}">{% trans "I've forgotten my password" %}</a></p>
+                <button name="login_submit" type="submit" value="Log In" class="btn btn-lg btn-primary" data-loading-text="{% trans "Logging in..." %}">{% trans 'Log In' %}</button>
+            
+                <div class="separator" style="margin: 20px 0px 20px;">{% trans "OR" %}</div>
+
+                <div style="text-align: center;">
+                    <a href="{% provider_login_url 'google' %}">
+                        <img src="{% static 'img/web_light_sq_SI@1x.png' %}" style="width: 240px; heigth: 60px;">
+                    </a>
+                </div>
+            
+            </form>
+        </div>
+        <div class="col-sm-6 register_form">
+            <form id="register_form" action="{{ request.get_full_path }}" method="post" class="card card-body bg-light">
+                <h2>{% trans 'Register' %}</h2>
+                {% csrf_token %}
+                {% include "oscar/partials/form_fields.html" with form=registration_form %}
+                <button name="registration_submit" type="submit" value="Register" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Registering...' %}">{% trans 'Register' %}</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
