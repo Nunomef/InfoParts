@@ -1,4 +1,30 @@
 {% extends 'oscar/partials/brand.html' %}
 {% load i18n %}
+{% load static %}
 
-<div class="col-sm-6 h1"><a href="{{ homepage_url }}">{% block brand_title %}InfoParts{% endblock %}</a><small> {{ shop_tagline }}</small></div>
+<style>
+    .no-padding-margin {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .flex-center {
+        display: flex !important;
+        align-items: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+</style>
+
+<div class="col-sm-6 h1 no-padding-margin">
+    <a href="{{ homepage_url }}" style="display: flex; align-items: center; padding: 0; margin: 0;">
+        {% block brand_title %}
+            <img src="{% static 'img/Logo2.png' %}" style="width: 200px;">
+        {% endblock %}
+    </a>
+    
+    <!-- <small>{{ shop_tagline }}</small> -->
+</div>
+
+<!-- <img src="{% static 'img/Logo1.png' %}" style="margin: 0; padding: 0"> -->
