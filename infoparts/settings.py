@@ -249,3 +249,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email settings
+EMAIL_HOST='smtp.mailersend.net'
+EMAIL_HOST_PASSWORD='GdNAmgYtAifh9Het'
+EMAIL_HOST_USER='MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+OSCAR_FROM_EMAIL='MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
