@@ -1,0 +1,47 @@
+{% extends "oscar/customer/baseaccountpage.html" %}
+{% load i18n %}
+
+{% block tabcontent %}
+
+    {% if vehicles %}
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>{% trans 'Vehicle' %}</th>
+                    <th>{% trans 'License Plate' %}</th>
+                    <th></th>
+                </tr>
+                {% for user_vehicle in vehicles %}
+                    <tr>
+                        <td>
+                            <strong>{% trans 'Modelo' %}:</strong> {{ user_vehicle.vehicle.get_model_display }}<br/>
+                            <strong>{% trans 'Portas' %}:</strong> {{ user_vehicle.vehicle.number_of_doors }}<br/>
+                            <strong>{% trans 'Combustível' %}:</strong> {{ user_vehicle.vehicle.get_fuel_type_display }}<br/>
+                            <strong>{% trans 'Ano' %}:</strong> {{ user_vehicle.vehicle.year }}
+                        </td>
+                        <td>
+                            {{ user_vehicle.vehicle.license_plate }}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-secondary" href="{% url 'my_customer:vehicle_edit' pk=user_vehicle.vehicle.id %}">{% trans 'Edit' %}</a>
+                                <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'my_customer:vehicle_delete' pk=user_vehicle.vehicle.id %}" class="dropdown-item">
+                                        {% trans 'Delete' %}
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include "oscar/partials/pagination.html" %}
+    {% else %}
+        <p>{% trans 'There are no vehicles in your vehicle list.' %}</p>
+    {% endif %}
+    <p>
+        <a href="{% url 'my_customer:vehicle_add' %}" class="btn btn-primary">{% trans 'Add a new vehicle' %}</a>
+    </p>
+{% endblock tabcontent %}

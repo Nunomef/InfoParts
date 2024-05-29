@@ -1,0 +1,19 @@
+{% extends "oscar/customer/baseaccountpage.html" %}
+
+{% load i18n %}
+
+{% block extra_breadcrumbs %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'my_customer:vehicle_list' %}">{% trans 'Vehicle list' %}</a>
+    </li>
+{% endblock %}
+
+{% block tabcontent %}
+    <h1>{% trans 'Confirm delete' %}</h1>
+    <p>{% trans 'Are you sure you want to delete this vehicle?' %}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans 'Yes, delete' %}</button>
+        <a href="{% url 'my_customer:vehicle_list' %}" class="btn btn-secondary">{% trans 'No, go back' %}</a>
+    </form>
+{% endblock tabcontent %}

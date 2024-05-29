@@ -33,9 +33,7 @@ DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 INTERNAL_IPS = [
-    # ...
-    '127.0.0.1',  # if you're connecting from the same machine
-    # ...
+    '127.0.0.1',  # connecting from the same machine
 ]
 
 # Application definition
@@ -56,31 +54,40 @@ INSTALLED_APPS = [
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
     'oscar.apps.shipping.apps.ShippingConfig',
-    
+
     'apps.catalogue.apps.CatalogueConfig',
-    #'oscar.apps.catalogue.apps.CatalogueConfig',
-    
+    # 'oscar.apps.catalogue.apps.CatalogueConfig',
+
     'oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig',
     'oscar.apps.communication.apps.CommunicationConfig',
-    
+
     'apps.partner.apps.PartnerConfig',
-    #'oscar.apps.partner.apps.PartnerConfig',
-    
+    # 'oscar.apps.partner.apps.PartnerConfig',
+
     'oscar.apps.basket.apps.BasketConfig',
     'oscar.apps.payment.apps.PaymentConfig',
     'oscar.apps.offer.apps.OfferConfig',
     'oscar.apps.order.apps.OrderConfig',
-    'oscar.apps.customer.apps.CustomerConfig',
+
+    'apps.customer.apps.CustomerConfig',
+    # 'oscar.apps.customer.apps.CustomerConfig',
+
     'oscar.apps.search.apps.SearchConfig',
     'oscar.apps.voucher.apps.VoucherConfig',
     'oscar.apps.wishlists.apps.WishlistsConfig',
-    'oscar.apps.dashboard.apps.DashboardConfig',
+
+    'apps.dashboard.apps.DashboardConfig',
+    # 'oscar.apps.dashboard.apps.DashboardConfig',
+
     'oscar.apps.dashboard.reports.apps.ReportsDashboardConfig',
     'oscar.apps.dashboard.users.apps.UsersDashboardConfig',
     'oscar.apps.dashboard.orders.apps.OrdersDashboardConfig',
     'oscar.apps.dashboard.catalogue.apps.CatalogueDashboardConfig',
     'oscar.apps.dashboard.offers.apps.OffersDashboardConfig',
-    'oscar.apps.dashboard.partners.apps.PartnersDashboardConfig',
+
+    'apps.dashboard.partners.apps.PartnersDashboardConfig',
+    # 'oscar.apps.dashboard.partners.apps.PartnersDashboardConfig',
+
     'oscar.apps.dashboard.pages.apps.PagesDashboardConfig',
     'oscar.apps.dashboard.ranges.apps.RangesDashboardConfig',
     'oscar.apps.dashboard.reviews.apps.ReviewsDashboardConfig',
@@ -94,20 +101,20 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     'django_tables2',
-    
+
     'debug_toolbar',
-    
+
     'allauth',
     'allauth.account',
 
     # Optional -- requires install using `django-allauth[socialacocunt]`.
     'allauth.socialaccount',
-    
+
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 ]
 
-SITE_ID = 1 
+SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -121,7 +128,8 @@ SOCIALACCOUNT_PROVIDERS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # LocaleMiddleware comes after SessionMiddleware
+    # LocaleMiddleware comes after SessionMiddleware
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -129,9 +137,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oscar.apps.basket.middleware.BasketMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    
+
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    
+
     'allauth.account.middleware.AccountMiddleware',
 ]
 
@@ -195,14 +203,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
-    
+
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
 
 
 HAYSTACK_CONNECTIONS = {
@@ -245,15 +251,20 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
-EMAIL_HOST='smtp.mailersend.net'
-EMAIL_HOST_PASSWORD='GdNAmgYtAifh9Het'
-EMAIL_HOST_USER='MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-OSCAR_FROM_EMAIL='MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
+EMAIL_HOST = 'smtp.mailersend.net'
+EMAIL_HOST_PASSWORD = 'GdNAmgYtAifh9Het'
+EMAIL_HOST_USER = 'MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+OSCAR_FROM_EMAIL = 'MS_naz5pd@trial-ynrw7gynrvr42k8e.mlsender.net'
+OSCAR_FROM_EMAIL_NAME = 'InfoParts'

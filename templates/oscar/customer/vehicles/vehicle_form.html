@@ -1,0 +1,22 @@
+{% extends "oscar/customer/baseaccountpage.html" %}
+
+{% load i18n %}
+
+{% block extra_breadcrumbs %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'my_customer:vehicle_list' %}">{% trans 'Vehicle list' %}</a>
+    </li>
+{% endblock %}
+
+{% block tabcontent %}
+    <h1>
+        {% if is_edit %}
+            {% trans 'Edit Vehicle' %}
+        {% else %}
+            {% trans 'Add a new vehicle' %}
+        {% endif %}
+    </h1>
+    {% with form=form style='horizontal' %}
+        {% include "oscar/partials/form.html" %}
+    {% endwith %}
+{% endblock tabcontent %}
